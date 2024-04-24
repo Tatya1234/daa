@@ -31,58 +31,48 @@
     </style>
     <script>
       function f1() {
-        const txt= `#include <stdio.h>
-
-int main() {
-    int n, position, newValue;
-
-    printf("Enter the size of the array: ");
-    scanf("%d", &n);
-
-    int arr[n]; // Create an array of size 'n'
-
-    //  Input the initial elements of the array
-    printf("Enter %d elements for the array:\\n", n);
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &arr[i]);
+        const txt= ` #include<stdio.h>
+void toh(int n,int x, int y, int z)
+{
+    if(n>=1)
+    {
+        toh(n-1,x,z,y);
+        printf("move the top dik of disc %d to top of tower %d \n",x,y);
+        toh(n-1,z,y,x);
     }
+}
+int main()
+{
+    int n;
+    int x=0,y=1,z=2;
+    printf("enter the no of disk");
+    scanf("%d",&n);
+    toh(n,x,y,z);
+    
 
-    // Display the original array
-    printf("Original Array: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
+}
+#include<stdio.h>
+int  fib(int n)
+{
+    if(n<=1)
+    {
+        return n;
     }
-
-    // Input the position at which to insert the value
-    printf("\\nEnter the position to insert the new value: ");
-    scanf("%d", &position);
-
-    // Check if the specified position is valid
-    if (position < 1 || position > n + 1) {
-        printf("Invalid position for insertion.\\n");
-        return 1; // Exit with an error code
+    else 
+    {
+        return fib(n-1)+fib(n-2);
     }
-
-    // Input the value to insert
-    printf("Enter the new value to insert: ");
-    scanf("%d", &newValue);
-
-    // Shift elements to make room for the new value
-    for (int i = n; i >= position; i--) {
-        arr[i] = arr[i - 1];
+}
+int main()
+{
+    int n;
+    printf("enter the value");
+    scanf("%d",&n);
+     
+    for(int i=0;i<n;i++)
+    {
+      printf("%d\n",fib(i));
     }
-
-    // Insert the new value at the specified position
-    arr[position - 1] = newValue;
-    n++; // Increase the size of the array
-
-    // Display the modified array
-    printf("Array after insertion: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
-    }
-
-    return 0; // Exit with a success code
 }
         `;
         navigator.clipboard.writeText(txt);
